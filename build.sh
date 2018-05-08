@@ -83,7 +83,7 @@ minify_exist() {
 	# copy tools
 	mkdir -p "${EXIST_MINIMAL}/tools"
 	cp -r "${EXIST_CLONE}/tools/ant" "${EXIST_CLONE}/tools/aspectj" "${EXIST_CLONE}/tools/jetty" "${EXIST_MINIMAL}/tools"
-	
+
 	# copy webapp
 	mkdir -p "${EXIST_MINIMAL}/webapp/WEB-INF"
 	cp -r "${EXIST_CLONE}/webapp/404.html" "${EXIST_CLONE}/webapp/controller.xql" "${EXIST_CLONE}/webapp/logo.jpg" "${EXIST_CLONE}/webapp/resources" "${EXIST_MINIMAL}/webapp"
@@ -179,7 +179,7 @@ then
 	NORECOMPILE=NO
 	git clone https://github.com/exist-db/exist.git "${EXIST_CLONE}"
 	cd "${EXIST_CLONE}"
-	git checkout "${BRANCH_NAME}"
+	git checkout -b "${BRANCH_NAME}"
 else
 	if [ "$NORECOMPILE" == "YES" ]
 	then
@@ -187,7 +187,7 @@ else
 	else
   		cd "${EXIST_CLONE}"
 		git fetch origin
-		git checkout "${BRANCH_NAME}"
+		git checkout -b "${BRANCH_NAME}"
 		if git describe --exact-match --tags HEAD > /dev/null
 		then
 			# this is a tag, don't need to rebase (update)

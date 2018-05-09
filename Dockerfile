@@ -22,7 +22,7 @@ LABEL name="eXist-db Docker with working xslfo module" \
   org.label-schema.vcs-url="https://github.com/evolvedbinary/docker-existdb" \
   org.label-schema.vcs-ref=$VCS_REF \
   org.label-schema.build-date=$BUILD_DATE \
-  org.label-schema.docker.cmd="docker run -it -p 9080:8080 -p 9443:8443"
+  org.label-schema.docker.cmd="docker run -it -p 8080:8080 -p 8443:8443"
 
 COPY /target/exist /exist
 COPY /target/conf.xml /exist/conf.xml

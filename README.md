@@ -41,25 +41,25 @@ $ ./build.sh --minimal eXist-4.1.0
 ## Running an eXist-db Docker Image
 
 <a name="running"/>
-eXist-db inside the Docker container is listening on TCP ports `8080` for HTTP and `8443` for HTTPS. To access these you have to map them to ports of your choosing on your host machine. For example if we wanted to interactively run an eXist-db Docker container and map the ports to `9080` and `9443` on your host system, you would run the following:
+eXist-db inside the Docker container is listening on TCP ports `8080` for HTTP and `8443` for HTTPS. To access these you have to map them to ports of your choosing on your host machine. To avoid unnecessary reloads, you should choose matching container and host ports. For example if we wanted to interactively run an eXist-db Docker container and map the host ports to `8080` and `8443` on your host system, you would run the following:
 
 
 ```bash
-$ docker run -it -p 9080:8080 -p 9443:8443 evolvedbinary/exist-db:eXist-4.1.0
+$ docker run -it -p 8080:8080 -p 8443:8443 evolvedbinary/exist-db:eXist-4.1.0
 ```
 
 or if you wish to instead run the minimal eXist-db Docker image:
 
 ```bash
-$ docker run -it -p 9080:8080 -p 9443:8443 evolvedbinary/exist-db:eXist-4.1.0-minimal
+$ docker run -it -p 8080:8080 -p 8443:8443 evolvedbinary/exist-db:eXist-4.1.0-minimal
 ```
 
-You can now connect to the eXist-db running inside the Docker container from your host machine using ports `9080` and `9443`.
+You can now connect to the eXist-db running inside the Docker container from your host machine using ports `8080` and `8443`.
 
-To shutdown the eXist-db server running in the Docker container, you can either: 
+To shutdown the eXist-db server running in the Docker container, you can either:
 
 1. Simply press `Ctrl-C` in the interactive terminal hosting the Docker container.
-2. Run `$ docker stop <container name>`. You can get the "container name" by running `$ docker ps` and examining the "NAMES" column of the output. 
+2. Run `$ docker stop <container name>`. You can get the "container name" by running `$ docker ps` and examining the "NAMES" column of the output.
 
 ### Note: Default username and password
 
@@ -87,16 +87,14 @@ This can be useful if you need to share data between the Container and the Host.
 For example is you wanted to keep eXist-db's data in the host folder `/Users/bob/docker-exist-data/01` you would launch a container using something like:
 
 ```bash
-$ docker run -it -p 9080:8080 -p 9443:8443 --volume /Users/bob/docker-exist-data/01:/exist-data evolvedbinary/exist-db:eXist-4.1.0
+$ docker run -it -p 8080:8080 -p 8443:8443 --volume /Users/bob/docker-exist-data/01:/exist-data evolvedbinary/exist-db:eXist-4.1.0
 ```
 
 or if you wish to instead run the minimal eXist-db Docker image:
 
 ```bash
-$ docker run -it -p 9080:8080 -p 9443:8443 --volume /Users/bob/docker-exist-data/01:/exist-data evolvedbinary/exist-db:eXist-4.1.0-minimal
+$ docker run -it -p 8080:8080 -p 8443:8443 --volume /Users/bob/docker-exist-data/01:/exist-data evolvedbinary/exist-db:eXist-4.1.0-minimal
 ```
 
 
 **NOTE:** This approach adds further overhead to I/O performance.
-
-
